@@ -1,0 +1,29 @@
+<div class="homepage-container">
+    <div class="select-year">
+        <button id="button-year" type="button" class="btn btn-icon" aria-label="home" (click)="print()">ANNO:
+            {{selectedYear}}
+            <cds-icon id="icon-button-year" style="color: white;" shape="angle" direction="down"></cds-icon>
+        </button>
+        <div class="options-container" [hidden]="!buttonYearCollapsed">
+            @for (year of years; track year) {
+                <div class="option-button-year" (click)="selected(year.value)">
+                    <span>{{year.value}}</span>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="meeting-container">
+        <div *ngIf="seasonInfo$ | async as season">
+            @for (meeting of season.Meetings; track $index;) {
+            <div class="meeting-row">
+                <span style="width: 1.5em;">{{$index != 0 ? '#' + $index: 'TEST'}}</span>
+                <img [src]="translateFlag(meeting.Country.Code)" width="30px" height="30px">
+                <span style="font-weight: bold; width: 7em;">{{meeting.Circuit.ShortName}}</span>
+                <span style="font-weight: bold; width: 6em;">{{changeDateFormat(meeting.Sessions[0].StartDate)}}</span>
+                <span style="font-weight: bold; width: 6em;">{{changeDateFormat(meeting.Sessions[meeting.Sessions.length - 1].EndDate)}}</span>
+            </div>
+            }
+        </div>
+    </div>
+</div>

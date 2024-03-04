@@ -1,0 +1,62 @@
+.homepage-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.meeting-container{
+    margin-left: 20%;
+    align-self: flex-start;
+    margin-top: 1em;
+    background-color: rgb(29, 29, 29,1.0);
+    border: 1px solid black;
+    border-radius: 1em;
+}
+
+.meeting-row{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 1em;
+    height: auto;
+    border-bottom: 1px solid rgb(246, 7, 7);
+}
+
+.meeting-row:hover{
+    background-color: rgba(35, 35, 35, 0.918);
+}
+
+.select-year{
+    height: auto;
+    align-self: flex-start;
+    background-color: rgb(29, 29, 29,1.0);
+    border-radius: 1em;
+    margin-left: 1em;
+    margin-top: 1em;
+    
+    button{
+        border: none;
+        color: white;
+        background-color: transparent;
+    }
+
+    button:hover{
+        background-color: transparent;
+    }
+}
+
+.option-button-year {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.option-button-year {
+  border-top: 1px solid rgba(23, 23, 23, 0.547);
+  margin: 2px;
+  height: 2em;
+}
+
+.option-button-year:hover {
+    background-color: gray;
+  }
