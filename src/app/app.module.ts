@@ -15,13 +15,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
-import { TranslateCountryFlag } from './utility/TranslateCountryFlag';
+import { RaceResult } from './components/common/specify/race-result/race-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomepageComponent,
+    RaceResult,
   ],
   imports: [
     BrowserModule,

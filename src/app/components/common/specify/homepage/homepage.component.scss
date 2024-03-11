@@ -4,21 +4,30 @@
 }
 
 .meeting-container{
-    margin-left: 20%;
+    margin-left: 26%;
     align-self: flex-start;
     margin-top: 1em;
-    background-color: rgb(29, 29, 29,1.0);
-    border: 1px solid black;
-    border-radius: 1em;
 }
 
 .meeting-row{
     display: flex;
     gap: 20px;
-    align-items: center;
     margin: 1em;
     height: auto;
+    background-color: black;
+    padding: 0.6em 0.5em;
+    border-radius: 1.3em;
+    flex-direction: column;
+}
+
+.meeting-info{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    height: auto;
     border-bottom: 1px solid rgb(246, 7, 7);
+    background-color: black;
+    border-radius: 10px;
 }
 
 .meeting-row:hover{
@@ -57,6 +66,13 @@
   height: 2em;
 }
 
-.option-button-year:hover {
-    background-color: gray;
-  }
+.accordion-row{
+    display: flex;
+    justify-content: flex-start;
+    padding: 1em;
+}
+
+.accordion-row:hover{
+    background-color: rgba(173, 9, 9, 0.918);
+    border-radius: 4em;
+}
