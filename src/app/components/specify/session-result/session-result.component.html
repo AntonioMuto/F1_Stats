@@ -1,0 +1,10 @@
+<button routerLink="/dashboard" routerLinkActive="active">back</button>
+
+<div class="result-container">
+    <app-positions-board 
+        [drivers]="driversMap" 
+        [typeSession]="resultType" 
+        [dataBoards]="raceResult$ | async " 
+        [tyreInfo]="tyreStints$ | async">
+    </app-positions-board>
+</div>

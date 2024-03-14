@@ -1,9 +1,0 @@
-<button routerLink="/dashboard" routerLinkActive="active">back</button>
-
-
-<div *ngIf="raceResult$ | async as result" class="result-board">
-    <div *ngFor="let line of result.Lines; let index = index;">
-        <div>{{ line.Position }} {{line.RacingNumber}}</div>
-        <!-- Altri valori da visualizzare -->
-    </div>
-</div>

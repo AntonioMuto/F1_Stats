@@ -1,0 +1,54 @@
+.result-board {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    padding: 0.3em 1em;
+    margin: 0.5em;
+}
+
+.board-row {
+    display: flex;
+    width: auto;
+    align-items: center;
+}
+
+.result-board:hover {
+    background-color: rgb(43, 43, 43);
+    border-radius: 1em;
+}
+
+.result-board {
+    border-bottom: 1px solid rgb(66, 66, 66);
+}
+
+.board-row span {
+    color: white;
+}
+
+.team-color{
+    height: 25px;
+    margin-right: 1em;
+}
+
+.position-container{
+    // background-color: rgba(241, 241, 241, 0.904);
+    display: flex;
+    padding: 3px 3px;
+    margin-right: 0.5em;
+    width: 2.5em;
+    align-items: center;
+    justify-content: center;
+}
+
+.name-info{
+    display: flex;
+    flex-direction: column;
+    width: 9em;
+}
+
+.expanded-info{
+    margin-top: 1em;
+    padding: 1em 1em;
+    background-color: rgb(44, 44, 44);
+    border-radius: 3em;
+}

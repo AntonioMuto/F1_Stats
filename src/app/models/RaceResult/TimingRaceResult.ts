@@ -1,6 +1,6 @@
 import { Line } from "./Line";
 
-export interface TimingResult {
+export interface TimingRaceResult {
     Lines: Line[];
     Withheld: boolean;
 }

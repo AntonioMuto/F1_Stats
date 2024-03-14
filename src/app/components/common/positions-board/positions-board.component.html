@@ -1,0 +1,43 @@
+<div *ngIf="dataBoards">
+    <div *ngFor="let line of dataBoards.Lines; let index = index;">
+        <div class="result-board" (click)="toggleRow(index)">
+            <div class="board-row">
+                <div class="position-container"
+                    [style]="'background-color: ' + retrieveColorPosition(line.Position,line.Retired,line.Stopped)">
+                    <span style="color: black; font-weight: bold;">
+                        {{retrievePosition(line.Stopped,line.Position)}}
+                    </span>
+                </div>
+                <div class="team-color" [style]="'border-left: 8px solid #' + drivers[line.RacingNumber].TeamColour">
+                </div>
+                <div class="name-info">
+                    <span style="font-size: 18px;">
+                        {{drivers[line.RacingNumber].Tla}}
+                    </span>
+                    <span style="font-size: 12px;">
+                        {{drivers[line.RacingNumber].TeamName}}
+                    </span>
+                </div>
+                <div style="width: 7em; font-size: 1.3em;">
+                    {{retrieveGapToLeader(line,typeSession)}}
+                </div>
+                <div style="width: 7em; font-size: 1.3em;">
+                    <span [style.color]="getTyreColor(drivers[line.RacingNumber].tyre)">
+                        {{retrieveTyre(drivers[line.RacingNumber].tyre)}}
+                    </span>
+                </div>
+            </div>
+            <div *ngIf="isRowExpanded[index]" class="expanded-info">
+                <div style="display: flex; flex-wrap: nowrap; align-items: center;">
+                    <div style="display: flex; flex-direction: column; margin-right: 2em;">
+                        <mat-icon>arrow_upward</mat-icon>
+                        <mat-icon>arrow_downward</mat-icon>
+                    </div>
+                    <div style="font-size: 1.5em;">
+                        {{retrieveGapToAhead(line,typeSession)}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
