@@ -17,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 import { SessionResultComponent } from './components/specify/session-result/session-result.component';
 import { PositionsBoardComponent } from './components/common/positions-board/positions-board.component';
+import { RaceControlsComponent } from './components/specify/race-controls/race-controls.component';
+import { TeamRadioComponent } from './components/specify/team-radio/team-radio.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { PositionsBoardComponent } from './components/common/positions-board/pos
     HomepageComponent,
     SessionResultComponent,
     PositionsBoardComponent,
+    RaceControlsComponent,
+    TeamRadioComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,14 @@
 <button routerLink="/dashboard" routerLinkActive="active">back</button>
 
-<div class="result-container">
-    <app-positions-board 
-        [drivers]="driversMap" 
-        [typeSession]="resultType" 
-        [dataBoards]="raceResult$ | async " 
-        [tyreInfo]="tyreStints$ | async">
-    </app-positions-board>
+<div class="session-info-container">
+    <div class="result-container">
+        <app-positions-board [drivers]="driversMap" [typeSession]="resultType" [dataBoards]="raceResult$ | async "
+            [tyreInfo]="tyreStints$ | async">
+        </app-positions-board>
+    </div>
+    <div>
+        <app-race-controls [raceMessage]="raceMessage$ | async">
+
+        </app-race-controls>
+    </div>
 </div>

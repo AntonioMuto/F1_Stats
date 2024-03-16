@@ -14,6 +14,8 @@ import { Stints } from '../../../models/TyreStint/Stints';
 import { TimingQualifyingResult } from '../../../models/QualifyingResult/TimingQualifyingResult';
 import { LineQualifying } from '../../../models/QualifyingResult/LineQualifying';
 import { LinePractices } from '../../../models/PracticeResult/LinePractices';
+import { RaceMessageControl } from '../../../models/RaceMessageControl/RaceMessage';
+import { RaceMessageService } from '../../../Services/RaceMessageService';
 
 @Component({
   selector: 'app-session-result',
@@ -25,18 +27,19 @@ export class SessionResultComponent implements OnInit {
   raceResult$: Observable<TimingRaceResult | TimingPracticeResult | TimingQualifyingResult> = new Observable<TimingRaceResult | TimingPracticeResult | TimingQualifyingResult>;
   driverList$: Observable<DriversData> = new Observable<DriversData>;
   tyreStints$: Observable<Stints> = new Observable<Stints>;
+  raceMessage$: Observable<RaceMessageControl> = new Observable<RaceMessageControl>;
   driversMap: { [key: string]: DriverInfo } = {};
   isRowExpanded: boolean[] = [];
-  resultType: TypeResult = TypeResult.RACE; 
+  resultType: TypeResult = TypeResult.RACE;
 
   constructor(
     private timingRaceResultService: ResultService,
     private driverService: DriverListService,
     private route: ActivatedRoute,
-    private tyreService: TyreStintServices
+    private tyreService: TyreStintServices,
+    private raceMessageService: RaceMessageService
   ) {
   }
-
 
   toggleRow(index: number) {
     this.isRowExpanded[index] = !this.isRowExpanded[index];
@@ -46,8 +49,6 @@ export class SessionResultComponent implements OnInit {
     this.route.params.pipe(
       switchMap(params => {
         const paramValue = params['data'];
-
-        // Prima chiamata
         return this.driverService.getDriverList(paramValue).pipe(
           retry(3),
           catchError((error) => {
@@ -64,12 +65,22 @@ export class SessionResultComponent implements OnInit {
             }
           }),
           switchMap(() => {
-            // Seconda chiamata
-            return this.retrieveResultSession(paramValue);
-
+            return this.raceMessageService.getRaceControlMessages(paramValue).pipe(
+              retry(3),
+              catchError((error) => {
+                console.error("errore chiamata:", error);
+                return throwError('ERRORE');
+              }),
+              tap((data: RaceMessageControl) => {
+                console.log("DRIVER", data);
+                this.raceMessage$ = of(data);
+              })
+            )
           }),
           switchMap(() => {
-            // Terza chiamata
+            return this.retrieveResultSession(paramValue);
+          }),
+          switchMap(() => {
             return this.tyreService.getTyreInfo(paramValue).pipe(
               retry(3),
               catchError((error) => {
@@ -82,7 +93,7 @@ export class SessionResultComponent implements OnInit {
                 entries.forEach(([key, value]) => {
                   this.driversMap[key].tyre = value[value.length - 1].Compound;
                 });
-                this.tyreStints$ = of(data); // Salva il risultato nella variabile tyreStints$
+                this.tyreStints$ = of(data);
               })
             );
           })
@@ -235,14 +246,14 @@ export class SessionResultComponent implements OnInit {
       }),);
   }
 
-  retrieveType(path: any){
-    if(path.search("_Race") > 0){
+  retrieveType(path: any) {
+    if (path.search("_Race") > 0) {
       return TypeResult.RACE;
     }
-    if(path.search("_Practice") > 0){
+    if (path.search("_Practice") > 0) {
       return TypeResult.PRACTICE;
     }
-    if(path.search("_Qualifying") > 0){
+    if (path.search("_Qualifying") > 0) {
       return TypeResult.QUALIFYING;
     }
     return "";

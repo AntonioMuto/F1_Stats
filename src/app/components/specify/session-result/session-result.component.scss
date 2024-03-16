@@ -2,8 +2,10 @@
     display: flex;
     flex-direction: column;
     background-color: black;
-    margin-left: 30%;
-    margin-right: 30%;
     border-radius: 2em;
 }
-
+.session-info-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

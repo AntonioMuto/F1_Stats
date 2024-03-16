@@ -76,13 +76,12 @@ export class PositionsBoardComponent {
       if (line.Stopped) {
         return "-";
       }
-      if(line.BestLapTime.Value.trim != ""){
-        if(line.BestLapTimes.length > 0 && line.BestLapTimes[0].Value != ""){
-          return line.BestLapTimes[0].Value;
-        } else {
-          return "-"
+      for (let index = line.BestLapTimes.length-1; index >= 0; index--) {
+        if(Object.keys(line.BestLapTimes[index]).length !== 0  && line.BestLapTimes[index].Value != ""){
+          return line.BestLapTimes[index].Value;
         }
-      } 
+      }
+      return "-";
     }
   }
 
@@ -91,11 +90,11 @@ export class PositionsBoardComponent {
       if (line.Stopped) {
         return "-";
       }
-      if (line.TimeDiffToPositionAhead != "" && line.TimeDiffToPositionAhead.search('L')) {
-        var newGap = line.TimeDiffToPositionAhead.replaceAll('L', " LAPS")
+      if (line.IntervalToPositionAhead.Value != "" && line.IntervalToPositionAhead.Value.search('L')) {
+        var newGap = line.IntervalToPositionAhead.Value.replaceAll('L', " LAPS")
         return newGap;
       }
-      return line.TimeDiffToPositionAhead != "" ? line.TimeDiffToPositionAhead : 'LEADER';
+      return line.IntervalToPositionAhead.Value != "" ? line.IntervalToPositionAhead.Value : 'LEADER';
     }
     if(typeSession === "Practice"){
       if (line.Stopped) {
@@ -106,6 +105,17 @@ export class PositionsBoardComponent {
         return newGap;
       }
       return line.TimeDiffToPositionAhead != "" ? line.TimeDiffToPositionAhead : 'INTERVALS';
+    }
+    if(typeSession === "Qualifying"){
+      if (line.Stopped) {
+        return "-";
+      }
+      for (let index = line.Stats.length-1; index >= 0; index--) {
+        if(line.Stats[index].TimeDifftoPositionAhead != ""){
+          return line.Stats[index].TimeDifftoPositionAhead;
+        }
+      }
+      return "-";
     }
   }
 
