@@ -1,1 +1,33 @@
-<p>team-radio works!</p>
+<div class="audio-player">
+    <ngx-audio-player *ngIf="showPlayer" [playlist]="[{title: retrieveTitle() , link: retrieveAudio()}]"
+        [autoPlay]="true" [title]="false"
+        [displayRepeatControls]="false"
+        [displayVolumeControls]="false"
+        [displayVolumeSlider]="true">
+    </ngx-audio-player>
+</div>
+<div class="radio-container">
+    <div style="overflow-y: auto; overflow-x: hidden; height: 38em; padding: 1em 1em; margin-top: 1em; width: 20em;">
+        <div *ngIf="teamRadio$ | async as radio" style="width: 37em; display: flex; flex-direction: column;gap: 10px;">
+            <div *ngFor="let capture of radio.Captures; let index = index">
+                <div class="team-radio-row">
+                    <div style="width: 2em;">
+                        <span class="material-icons">headphones</span>
+                    </div>
+                    <div class="driver-container"
+                        [style]="'background-color: #' + drivers[capture.RacingNumber].TeamColour">
+                        <span style="color: black; font-weight: bold;">
+                            {{drivers[capture.RacingNumber].Tla}}
+                        </span>
+                    </div>
+                    <div style="width: 10em;">
+                        <span>{{drivers[capture.RacingNumber].TeamName}}</span>
+                    </div>
+                    <div (click)="playAudio(capture.Path, drivers[capture.RacingNumber].FullName)" style="display: flex; align-content: center;">
+                        <mat-icon>play_arrow</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

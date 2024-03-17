@@ -19,6 +19,7 @@ import { SessionResultComponent } from './components/specify/session-result/sess
 import { PositionsBoardComponent } from './components/common/positions-board/positions-board.component';
 import { RaceControlsComponent } from './components/specify/race-controls/race-controls.component';
 import { TeamRadioComponent } from './components/specify/team-radio/team-radio.component';
+import { AudioPlayerComponent, NgxAudioPlayerModule } from 'ngx-audio-player';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TeamRadioComponent } from './components/specify/team-radio/team-radio.c
     HttpClientModule,
     FormsModule,
     ClarityModule,
+    NgxAudioPlayerModule
   ],
   providers: [
     provideAnimationsAsync()

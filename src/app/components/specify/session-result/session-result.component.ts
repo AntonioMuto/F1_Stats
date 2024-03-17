@@ -31,6 +31,7 @@ export class SessionResultComponent implements OnInit {
   driversMap: { [key: string]: DriverInfo } = {};
   isRowExpanded: boolean[] = [];
   resultType: TypeResult = TypeResult.RACE;
+  pathApi: string | null | undefined;
 
   constructor(
     private timingRaceResultService: ResultService,
@@ -49,6 +50,8 @@ export class SessionResultComponent implements OnInit {
     this.route.params.pipe(
       switchMap(params => {
         const paramValue = params['data'];
+        this.pathApi = paramValue;
+
         return this.driverService.getDriverList(paramValue).pipe(
           retry(3),
           catchError((error) => {
@@ -63,19 +66,6 @@ export class SessionResultComponent implements OnInit {
                 this.driversMap[driver.RacingNumber] = driver;
               }
             }
-          }),
-          switchMap(() => {
-            return this.raceMessageService.getRaceControlMessages(paramValue).pipe(
-              retry(3),
-              catchError((error) => {
-                console.error("errore chiamata:", error);
-                return throwError('ERRORE');
-              }),
-              tap((data: RaceMessageControl) => {
-                console.log("DRIVER", data);
-                this.raceMessage$ = of(data);
-              })
-            )
           }),
           switchMap(() => {
             return this.retrieveResultSession(paramValue);
@@ -96,7 +86,7 @@ export class SessionResultComponent implements OnInit {
                 this.tyreStints$ = of(data);
               })
             );
-          })
+          }),
         );
       })
     ).subscribe();

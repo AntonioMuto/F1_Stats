@@ -1,5 +1,5 @@
 import { Message } from "./Message";
 
 export interface RaceMessageControl {
-    Message: Message[];
+    Messages: Message[];
 }

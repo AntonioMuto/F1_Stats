@@ -1,0 +1,32 @@
+.race-control-row{
+    display: flex;
+    color: black;
+    gap: 5px;
+    font-weight: bold;
+    align-items: flex-start;
+}
+
+.row-control-image{
+    flex: 0;
+    img{
+        padding: 5px 5px;
+        width: 32px;
+        height: 32px;
+    }
+}
+.row-control-message{
+    padding: 2px 2px;
+    font-size: 10px;
+    width: 50px;
+    height: 30px;
+    color: rgba(222, 222, 222, 0.874);
+    flex: 1;
+    background-color: rgb(30 30 30 / 72%);
+    border-radius: 7px;
+
+    span {
+        line-height: 1.5;
+        display: inline-block; 
+        max-width: 100%;
+      }
+}

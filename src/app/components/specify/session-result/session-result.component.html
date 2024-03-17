@@ -1,14 +1,32 @@
 <button routerLink="/dashboard" routerLinkActive="active">back</button>
 
-<div class="session-info-container">
+<!-- <div class="session-info-container">
     <div class="result-container">
         <app-positions-board [drivers]="driversMap" [typeSession]="resultType" [dataBoards]="raceResult$ | async "
             [tyreInfo]="tyreStints$ | async">
         </app-positions-board>
-    </div>
-    <div>
-        <app-race-controls [raceMessage]="raceMessage$ | async">
-
+        <app-race-controls [path]="pathApi!">
         </app-race-controls>
+    </div>
+</div> -->
+
+
+<div class="session-info-container scrollable-container">
+    <div class="result-container">
+        <div class="pos-cont">
+            <app-positions-board [drivers]="driversMap" [typeSession]="resultType" [dataBoards]="raceResult$ | async "
+                [tyreInfo]="tyreStints$ | async">
+            </app-positions-board>
+        </div>
+        <div class="race-info">
+            <div class="mess-cont">
+                <div style="overflow-y: auto; overflow-x: hidden; height: 30em; padding: 1em 1em; margin-top: 1em;">
+                    <app-race-controls [path]="pathApi!">
+                    </app-race-controls>
+                </div>
+            </div>
+                <app-team-radio [pathApi]="pathApi!" [drivers]="driversMap">
+                </app-team-radio>
+        </div>
     </div>
 </div>

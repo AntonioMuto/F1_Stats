@@ -1,1 +1,12 @@
-<p>race-controls works!</p>
+<div *ngIf="raceMessage$ | async as messageRace" style="width: 37em; display: flex; flex-direction: column;gap: 10px;">
+    <div *ngFor="let message of messageRace.Messages; let index = index">
+        <div class="race-control-row">
+            <div class="row-control-image">
+                <img src="assets/images/FIA.png" alt="FIA">
+            </div>
+            <div class="row-control-message">
+                <span>{{message.Message}}</span>
+            </div>
+        </div>
+    </div>
+</div>
